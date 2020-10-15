@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <canvas id = canvas></canvas>
+    <div id = menu>
+        <label for="equations">Equation</label>
+        <ul id = equations>
+            <li data-checked="true" data-index="0">f'(x,y) = x</li>
+            <li data-index="1">f'(x,y) = -y * exp(-0.05(x^2 + y^2))</li>
+            <li data-index="2">f'(x,y) = 0.1(x * sin(y))</li>
+            <li data-index="3">f'(x,y) = (x^2 - y^2) / (x^2 + y^2)</li>
+            <li data-index="4">f'(x,y) = sin(x) * cos(y)</li>
+            <li data-index="5">f'(x,y) = 0.1(x^2 - 2) / (y^2 + 1) * sin(x) + sin(y)</li>
+        </ul>
+        <br>
+        <label for="checkbox">Show Streamlines</label>
+        <input type="checkbox" id = "checkbox">
+        <br>
+        <label for="numberInput">Stepsize</label>
+        <input type="number" id = numberInput value = 0.1 step = 0.01>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
