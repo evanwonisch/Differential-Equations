@@ -4,8 +4,8 @@ var width, height;
 var time = 0;
 const FPS = 60;
 
-var xs = [-15,15, 0.8]
-var ys = [-10,10, 0.8]
+var xs = [-15,15, 1]
+var ys = [-10,10, 1]
 
 var plot_width;
 var plot_heigth;
@@ -105,9 +105,13 @@ function update(){
                 solve(x,y, "blue", 0.2, false)
             } else {
                 ctx.beginPath()
-                ctx.moveTo(x * xscale + xshift, y * yscale + yshift)
-                ctx.lineTo(x * xscale + xshift + 10, y * yscale + yshift + -f_prime(x,y)* 10)
+                ctx.moveTo(x * xscale + xshift, -y * yscale + yshift)
+                ctx.lineTo(x * xscale + xshift + 10, -y * yscale + yshift - f_prime(x,y)* 10)
                 ctx.stroke()
+
+                // ctx.font = "12px Arial";
+                // ctx.strokeStyle = "black"
+                // ctx.strokeText(x + " "+ y + " " , x*xscale+xshift, -y*yscale+yshift);
             }
         }
     }
@@ -117,7 +121,6 @@ function update(){
 
 function solve(x, y, color = "red", lineWidth = 3, showPoint = true){
     var n_steps = 40/ stepsize
-    y = -y
     var startx = x
     var starty = y;
     
@@ -125,7 +128,7 @@ function solve(x, y, color = "red", lineWidth = 3, showPoint = true){
     if(showPoint){
         ctx.beginPath();
         ctx.fillStyle = color
-        ctx.arc(x * xscale + xshift, y * yscale + yshift, 5, 0, Math.PI * 2)
+        ctx.arc(x * xscale + xshift, -y * yscale + yshift, 5, 0, Math.PI * 2)
         ctx.fill();
     }
     
@@ -136,14 +139,14 @@ function solve(x, y, color = "red", lineWidth = 3, showPoint = true){
     var step = 0;
     do {
         if(step == 0){
-            ctx.moveTo(x * xscale + xshift, y * yscale + yshift)
+            ctx.moveTo(x * xscale + xshift, -y * yscale + yshift)
         } else {
-            ctx.lineTo(x * xscale + xshift, y * yscale + yshift)
+            ctx.lineTo(x * xscale + xshift, -y * yscale + yshift)
         }
 
         //NEXT POSTION
         x += stepsize;
-        y -= f_prime(x,y) * stepsize;
+        y += f_prime(x,y) * stepsize;
         if(y > 2000){
             y = 2000
         }
@@ -167,14 +170,14 @@ function solve(x, y, color = "red", lineWidth = 3, showPoint = true){
     var step = 0;
     do {
         if(step == 0){
-            ctx.moveTo(x * xscale + xshift, y * yscale + yshift)
+            ctx.moveTo(x * xscale + xshift, -y * yscale + yshift)
         } else {
-            ctx.lineTo(x * xscale + xshift, y * yscale + yshift)
+            ctx.lineTo(x * xscale + xshift, -y * yscale + yshift)
         }
 
         //NEXT POSTION
         x -= stepsize;
-        y += f_prime(x,y) * stepsize;
+        y -= f_prime(x,y) * stepsize;
         if(y > 2000){
             y = 2000
         }
